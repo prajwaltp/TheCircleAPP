@@ -2,7 +2,7 @@
 // Importing React library
 import React,{useEffect, useState} from 'react';
 import { Container, Navbar, Nav, Row, Col, Button } from 'react-bootstrap';
-import AvailableCourses from './components/AvailableCourses';
+import MyCourseRegistrations from './components/MyCourseRegistrations';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HomePage from './components/HomePage';
 import NavbarComponent from './components/NavbarComponent';
@@ -16,7 +16,7 @@ function App() {
         <Router>
           <Routes>
             <Route path="*" element={<HomePage />}  />
-            <Route path="/courses" element={<AvailableCourses />}   />
+            <Route path="/courses" element={<MyCourseRegistrations />}   />
             <Route path="/login" element={<LoginPage/>} />
             <Route path="/signup" element={<SignUp/>} />
           </Routes>

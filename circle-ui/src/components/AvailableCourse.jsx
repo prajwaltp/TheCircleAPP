@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Table, Button } from "react-bootstrap";
 
-const CourseRegistration = () => {
+const AvailableCourse = () => {
   const [rowData, setRowData] = useState([]);
   const data = JSON.parse(localStorage.getItem("data"));
   console.log(data);
@@ -28,7 +28,7 @@ const CourseRegistration = () => {
         body: JSON.stringify({
           courseId: parseInt(courseId),
           studentId: parseInt(data.studentData.studentId),
-        }),
+        })
       };
       const response = await fetch(
         "http://localhost:8000/student-course-registration/",
@@ -49,6 +49,7 @@ const CourseRegistration = () => {
 
   return (
     <div>
+        <h2>Register from the below available courses:</h2>
       <Table striped bordered hover>
         <thead>
           <tr>
@@ -82,4 +83,4 @@ const CourseRegistration = () => {
   );
 };
 
-export default CourseRegistration;
+export default AvailableCourse;
