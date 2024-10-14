@@ -19,9 +19,8 @@ connection.connect((err) => {
 });
 
 const corsOptions = {
-    origin: 'http://localhost:3000', // Replace with your allowed origin
-    origin: 'localhost:3000', 
-    credentials:false
+    origin: ['http://localhost:3000', 'localhost:3000'], // Replace with your allowed origins
+    credentials: false
   };
   
  
@@ -29,10 +28,10 @@ const corsOptions = {
 const app = express();
 app.use(express.json());
 const PORT = 3001;
+app.use(cors(corsOptions));
 
 // Basic route
-app.get('/', (req, res) => {
-    res.send('Welcome to the API');
+app.get('/', (_req, res) => {
   });
 
 app.get('/get-courses-by-studentid/:studentId', (req, res) => {
