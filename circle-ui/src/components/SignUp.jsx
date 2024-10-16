@@ -14,7 +14,8 @@ const SignUp = () => {
   const [studentPhone, setStudentPhone] = useState("");
   const [studentGrade, setStudentGrade] = useState("");
   const [tutorName, setTutorName] = useState("");
-
+  const [tutorPhone, setTutorPhone] = useState("");
+  const [tutorQualification, setTutorQualification] = useState("");
 
   function checkPwd() {
     return pwd === secPwd;
@@ -32,7 +33,7 @@ const SignUp = () => {
           body: JSON.stringify({
             email: email,
             password: pwd,
-            userType: userType
+            userType: userType,
           }),
         };
         try {
@@ -71,10 +72,35 @@ const SignUp = () => {
                   setMessage("User added");
                 }
               } catch (e) {
-                console.error(e)
+                console.error(e);
               }
-            } else {
+            } else if (userType === "tutor") {
               // else call tutorapi
+              const requestOptions = {
+                method: "POST",
+                headers: {
+                  "Content-type": "Application/json",
+                },
+                body: JSON.stringify({
+                  tutorName: tutorName,
+                  tutorEmail: email,
+                  tutorPhone: tutorPhone,
+                  qualification: tutorQualification,
+                  userId: userId,
+                }),
+              };
+
+              try {
+                const response = await fetch(
+                  "http://localhost:8000/tutor-registration/",
+                  requestOptions
+                );
+                if (response.ok) {
+                  setMessage("User added");
+                }
+              } catch (e) {
+                console.error(e);
+              }
             }
 
             navigate("/login");
@@ -204,6 +230,27 @@ const SignUp = () => {
                 />
               </Form.Group>
 
+              <Form.Group controlId="tutorPhone">
+                <Form.Label>Enter tutor phone:</Form.Label>
+                <Form.Control
+                  required="required"
+                  type="text"
+                  value={tutorPhone}
+                  onChange={(e) => setTutorPhone(e.target.value)}
+                  placeholder="Enter tutor phone"
+                />
+              </Form.Group>
+
+              <Form.Group controlId="tutorQualification">
+                <Form.Label>Enter tutor Qualification:</Form.Label>
+                <Form.Control
+                  required="required"
+                  type="text"
+                  value={tutorQualification}
+                  onChange={(e) => setTutorQualification(e.target.value)}
+                  placeholder="Enter tutor Qualification"
+                />
+              </Form.Group>
             </div>
           ) : (
             ""

@@ -36,7 +36,7 @@ const AvailableCourse = () => {
       );
       if (response.ok) {
         alert("Student registered");
-        getAvailableCourseDetails()
+        getAvailableCourseDetails();
       }
     } catch (e) {
       console.error(e);
@@ -44,7 +44,6 @@ const AvailableCourse = () => {
   };
   useEffect(() => {
     getAvailableCourseDetails();
-    // console.log("AvailableCourse" + rowData);
   }, []);
 
   return (

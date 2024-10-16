@@ -60,7 +60,7 @@ const MyCourseRegistrations = () => {
         requestOptions
       );
       if (response.ok) {
-        alert("CourseID  " + registrationId + " " + data.studentData.studentId);
+        alert("You have succeffully de-registered from the course RegistartionID: " + registrationId);
         fetchCourses();
         // getAvailableCourseDetails()
       }
